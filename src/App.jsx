@@ -1,3 +1,7 @@
+// TODO: add button with +, sticky to right top when scroll
+// TODO: round more the boxes
+// TODO: 
+
 import { useState, useEffect } from 'react'
 import Note from './Note'
 import 'bootstrap/dist/css/bootstrap.min.css'
