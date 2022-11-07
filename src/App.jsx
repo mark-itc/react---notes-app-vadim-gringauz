@@ -24,13 +24,12 @@ function App () {
       </h6>
       <div className='container d-flex flex-column align-items-center p-3'>
         <h1>Notes App</h1>
-        <div className='border shadow rounded p-3'>
+        <div className='border shadow rounded p-3 w-100'>
           <textarea
-            className='border border-primary rounded'
-            name='note-text'
-            id='text'
-            cols='50'
+            className='border-0 w-100'
+            name='note-text'            
             rows='10'
+            placeholder='Write a note...'
             onChange={e => (newNote.text = e.target.value)}
           />
           <br />

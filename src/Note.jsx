@@ -7,7 +7,7 @@ function Note (props) {
   const { date, text } = note
 
   return (
-    <div className='border shadow p-2 '>
+    <div className='border shadow rounded p-2 '>
         <div className="row">
             <div className="col">
                 <h6 className=''>{date.toLocaleString()}</h6>
