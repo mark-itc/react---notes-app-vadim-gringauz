@@ -7,11 +7,15 @@
 - Milestone 3 
 - Milestone 4 
 - Milestone 5
+- Milestone 5.1
 - Milestone 6
 - Milestone 7
+- Milestone 8
+- Milestone 9
+- Milestone 10
 
 
-*Special Notes*: 
+*Special notes for Notes-App*: 
 
 
 
