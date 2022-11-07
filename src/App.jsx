@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Note from './Note'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App () {
   const [notes, setNotes] = useState([])
@@ -8,7 +9,7 @@ function App () {
   //   console.log('new text:', text);
   // }, [text])
 
-  const newNote = {text: 'txt'}
+  const newNote = { text: 'txt' }
 
   function handleAddNote () {
     newNote.date = new Date()
@@ -17,22 +18,45 @@ function App () {
   }
 
   return (
-    <div>
-      <textarea
-        name='note-text'
-        id='text'
-        cols='50'
-        rows='10'
-        onChange={e => (newNote.text = e.target.value)}
-      />
-      <br />
-      <button onClick={handleAddNote}>Add</button>
-      {notes.length === 0 ? (
-        <div>No notes yet</div>
-      ) : (
-        notes.map((note, index) => <Note key={'note-' + index} note={note} />)
-      )}
-    </div>
+    <>
+      <h6 className='text-secondary text-right w-100'>
+        Milestone-1 v0.2
+      </h6>
+      <div className='container d-flex flex-column align-items-center p-3'>
+        <h1>Notes App</h1>
+        <div className='border shadow rounded p-3'>
+          <textarea
+            className='border border-primary rounded'
+            name='note-text'
+            id='text'
+            cols='50'
+            rows='10'
+            onChange={e => (newNote.text = e.target.value)}
+          />
+          <br />
+          <button
+            type='button'
+            className='btn btn-secondary w-100'
+            onClick={handleAddNote}
+          >
+            Add
+          </button>
+        </div>
+        {notes.length === 0 ? (
+          <div>No notes yet</div>
+        ) : (
+          <div className='container p-2'>
+            <div className='row'>
+              {notes.map((note, index) => (
+                <div className='col-lg-2 col-md-6 mt-2 '>
+                  <Note key={'note-' + index} note={note} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   )
 }
 
