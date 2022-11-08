@@ -4,7 +4,7 @@
 **UI/UX**: Design is responsive (used bootstrap), but focused mainly on mobile UI/UX
 ### *Progress:*
 - Milestone 1: Add :heavy_check_mark:
-- Milestone 2: Delete
+- Milestone 2: Delete :heavy_check_mark:
 - Milestone 3: Title
 - Milestone 4: Modal
 - Milestone 5: Input
