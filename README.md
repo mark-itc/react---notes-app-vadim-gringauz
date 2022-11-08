@@ -16,8 +16,4 @@
 - Milestone 10: Reminder
 
 
-*Special notes for Notes-App*: 
-
-
-
 ### :basketball: Vadim Gringauz :basketball:
