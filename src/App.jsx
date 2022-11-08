@@ -16,6 +16,12 @@ function App () {
     setNotes([...notes, newNote])
   }
 
+  function handleRemoveNote(index) {
+    notes.splice(index, 1)
+    const newNotesWithoutDeleted = [...notes]
+    setNotes(newNotesWithoutDeleted)
+  }
+
   return (
     <>
       <Header/>
@@ -29,7 +35,7 @@ function App () {
             <div className='row'>
               {notes.map((note, index) => (
                 <div className='col-lg-2 col-md-6 mt-2 '>
-                  <Note key={'note-' + index} note={note} />
+                  <Note key={'note-' + index} note={note} handleRemoveNote={handleRemoveNote} index={index}/>
                 </div>
               ))}
             </div>
