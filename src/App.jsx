@@ -1,9 +1,7 @@
-// TODO: add button with +, sticky to right top when scroll
-// TODO: round more the boxes
-// TODO: 
-
 import { useState, useEffect } from 'react'
-import Note from './Note'
+import Note from './components/Note'
+import Header from './components/Header'
+import Form from './components/Form'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App () {
@@ -13,9 +11,7 @@ function App () {
   //   console.log('new text:', text);
   // }, [text])
 
-  const newNote = { text: 'txt' }
-
-  function handleAddNote () {
+  function handleAddNote (newNote) {
     newNote.date = new Date()
     // console.log('add note', newNote)
     setNotes([...notes, newNote])
@@ -23,30 +19,12 @@ function App () {
 
   return (
     <>
-      <h6 className='text-secondary text-right w-100'>
-        Milestone-1 v0.2
-      </h6>
+      <Header/>
       <div className='container d-flex flex-column align-items-center p-3'>
         <h1>Notes App</h1>
-        <div className='border shadow rounded p-3 w-100'>
-          <textarea
-            className='border-0 w-100'
-            name='note-text'            
-            rows='10'
-            placeholder='Write a note...'
-            onChange={e => (newNote.text = e.target.value)}
-          />
-          <br />
-          <button
-            type='button'
-            className='btn btn-secondary w-100'
-            onClick={handleAddNote}
-          >
-            Add
-          </button>
-        </div>
+        <Form value='123' handleAddNote={handleAddNote}/>
         {notes.length === 0 ? (
-          <div>No notes yet</div>
+          <div className='p-5 fs-1'>No notes yet</div>
         ) : (
           <div className='container p-2'>
             <div className='row'>
