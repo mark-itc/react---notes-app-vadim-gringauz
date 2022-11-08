@@ -17,9 +17,11 @@ function App () {
   }
 
   function handleRemoveNote(index) {
-    notes.splice(index, 1)
-    const newNotesWithoutDeleted = [...notes]
-    setNotes(newNotesWithoutDeleted)
+    if (window.confirm('Remove this note?')) {
+      notes.splice(index, 1)
+      const newNotesWithoutDeleted = [...notes]
+      setNotes(newNotesWithoutDeleted)
+    }
   }
 
   return (
