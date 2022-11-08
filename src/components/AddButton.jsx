@@ -2,9 +2,9 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function AddButton (props) {
-  const { handleAddNote, text } = props
+  const { handleAddNote, text, title } = props
   function handleClick () {
-    const newNote = { text: text }
+    const newNote = { title: title, text: text }
     handleAddNote(newNote)
   }
 
