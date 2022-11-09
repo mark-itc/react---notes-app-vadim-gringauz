@@ -5,7 +5,7 @@
 ### *Progress:*
 - Milestone 1: Add :heavy_check_mark:
 - Milestone 2: Delete :heavy_check_mark:
-- Milestone 3: Title
+- Milestone 3: Title :heavy_check_mark:
 - Milestone 4: Modal
 - Milestone 5: Input
 - Milestone 5.1: Auto-resize
