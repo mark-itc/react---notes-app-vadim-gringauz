@@ -1,5 +1,5 @@
 ## React.JS Project #1: :memo: Notes App
-# Milestone :one: v1.0 
+# Milestone 3️⃣ v1.0 
 
 **UI/UX**: Design is responsive (used bootstrap), but focused mainly on mobile UI/UX
 ### *Progress:*
