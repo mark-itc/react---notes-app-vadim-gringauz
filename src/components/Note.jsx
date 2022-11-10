@@ -1,33 +1,46 @@
 import React from 'react'
 import { useState } from 'react'
-
 import DeleteButton from './DeleteButton'
+import ConfirmDeleteModal from './ConfirmDeleteModal'
 
 function Note (props) {
   const { note, index, handleRemoveNote, handleShowModal } = props
   const { date, text, title } = note
 
-  
+  const [showConfirmModal, setShowConfirmModal] = useState(false)
+  const handleCloseConfirmModal = () => {
+    setShowConfirmModal(false)
+  }
+  const handleShowConfirmModal = note => {
+    setShowConfirmModal(true)
+  }
 
   return (
-    <div
-      className='border shadow rounded p-2 position-relative'
-      onClick={() => handleShowModal(note)}
-    >
-      <div className='row justify-content-between'>
-        <h6 className=''>
-          {date.toDateString()}, {date.toTimeString().split(' ')[0]}
-        </h6>
+    <div className='position-relative'>
+      <div
+        style={{ zIndex: '1' }}
+        className='border shadow rounded p-2'
+        onClick={() => handleShowModal(note)}
+      >
+        <div className='row justify-content-between'>
+          <h6 className=''>
+            {date.toDateString()}, {date.toTimeString().split(' ')[0]}
+          </h6>
+        </div>
+        <div className='row'>
+          <h3 style={{ overflowWrap: 'break-word' }}>{title}</h3>
+        </div>
+        <div className='row'>
+          <p style={{ overflowWrap: 'break-word' }}>{text}</p>
+        </div>
       </div>
-      <div className='row'>
-        <h3 style={{ overflowWrap: 'break-word' }}>{title}</h3>
-      </div>
-      <div className='row'>
-        <p style={{ overflowWrap: 'break-word' }}>{text}</p>
-      </div>
-      <DeleteButton handleRemoveNote={handleRemoveNote} index={index}/>
-
-      
+      <DeleteButton handleShowConfirmModal={handleShowConfirmModal} />
+      <ConfirmDeleteModal
+        show={showConfirmModal}
+        onHide={handleCloseConfirmModal}
+        index={index}
+        handleRemoveNote={handleRemoveNote}
+      />
     </div>
   )
 }

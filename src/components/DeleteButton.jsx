@@ -1,15 +1,10 @@
 import React from 'react'
+import CloseButton from 'react-bootstrap/CloseButton'
 
-function DeleteButton ({ handleRemoveNote, index }) {
+function DeleteButton ({ handleShowConfirmModal }) {
   return (
-    <div className='position-absolute top-0 end-0 p-1'>
-      <button
-        type='button'
-        className='btn btn-light btn-sm'
-        onClick={() => handleRemoveNote(index)}
-      >
-        X
-      </button>
+    <div style={{ zIndex: '99' }} className='position-absolute top-0 end-0 p-1'>
+      <CloseButton onClick={handleShowConfirmModal} />
     </div>
   )
 }
