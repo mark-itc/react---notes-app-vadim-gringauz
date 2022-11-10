@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function AddButton (props) {
   const { handleAddNote, text, title } = props
-  function handleClick () {
+
+  const handleClick = () => {
     const newNote = { title: title, text: text }
     handleAddNote(newNote)
   }
