@@ -1,7 +1,7 @@
 import React from 'react'
 import Note from './Note'
 
-export default function NotesList({ notes, handleRemoveNote }) {
+export default function NotesList({ notes, handleRemoveNote, handleShowModal }) {
   return (
     <>
      {notes.length === 0 ? (
@@ -16,6 +16,7 @@ export default function NotesList({ notes, handleRemoveNote }) {
                     note={note}
                     handleRemoveNote={handleRemoveNote}
                     index={index}
+                    handleShowModal={handleShowModal}
                   />
                 </div>
               ))}
