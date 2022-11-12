@@ -21,7 +21,7 @@ function TextInput ({ text, handleOnFocus, handleOnBlur, handleTextChange }) {
   return (
     <>
       <textarea
-        className='fs-5 border-0 form-control w-100 mt-1'
+        className='fs-5 border-0 form-control w-100 mt-1 bg-transparent'
         name='note-text'
         placeholder='Write a note...'
         onChange={e => handleTextChange(e.target.value)}
