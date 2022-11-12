@@ -5,7 +5,7 @@ import ConfirmDeleteModal from './ConfirmDeleteModal'
 
 function Note (props) {
   const { note, index, handleRemoveNote, handleShowModal } = props
-  const { date, text, title } = note
+  const { date, text, title, lastEditDate } = note
 
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const handleCloseConfirmModal = () => {
@@ -22,16 +22,22 @@ function Note (props) {
         className='border shadow rounded p-2'
         onClick={() => handleShowModal(note, index)}
       >
-        <div className='row justify-content-between'>
-          <h6 className=''>
-            {date.toDateString()}, {date.toTimeString().split(' ')[0]}
-          </h6>
-        </div>
         <div className='row'>
           <h3 style={{ overflowWrap: 'break-word' }}>{title}</h3>
         </div>
         <div className='row'>
           <p style={{ overflowWrap: 'break-word' }}>{text}</p>
+        </div>
+        <div className='row justify-content-between'>
+          <h6>
+            created: {date.toDateString()}, {date.toTimeString().split(' ')[0]}
+          </h6>
+          {lastEditDate && (
+            <h7>
+              last edit: {lastEditDate.toDateString()}, {lastEditDate.toTimeString().split(' ')[0]}
+            </h7>
+          )
+          }
         </div>
       </div>
       <DeleteButton handleShowConfirmModal={handleShowConfirmModal} />

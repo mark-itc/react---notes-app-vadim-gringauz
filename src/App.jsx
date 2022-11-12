@@ -35,6 +35,7 @@ function App () {
 
   const [noteClicked, setNoteClicked] = useState({
     date: new Date('1/1/2020'),
+    lastEditDate: null,
     title: 'empty title',
     text: 'empty text'
   })
