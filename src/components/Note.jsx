@@ -33,9 +33,9 @@ function Note (props) {
             created: {date.toDateString()}, {date.toTimeString().split(' ')[0]}
           </h6>
           {lastEditDate && (
-            <h7>
+            <h6>
               last edit: {lastEditDate.toDateString()}, {lastEditDate.toTimeString().split(' ')[0]}
-            </h7>
+            </h6>
           )
           }
         </div>

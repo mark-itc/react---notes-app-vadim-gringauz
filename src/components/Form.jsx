@@ -38,7 +38,7 @@ function Form (props) {
           handleTextChange={handleTextChange}
         />
       </div>
-      <div className='d-flex w-100 justify-content-end mt-1'>
+      <div className='d-flex w-100 justify-content-end mt-1' style={{height: '50px'}}>
         {type === 'new' ? (
           isEditText && (
             <AddButton
