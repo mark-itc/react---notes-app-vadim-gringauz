@@ -1,11 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
 import AddButton from './AddButton'
+import SaveEditButton from './SaveEditButton'
 import TextInput from './TextInput'
 import TitleInput from './TitleInput'
 
 function Form (props) {
-  const { defaultText, defaultTitle, handleAddNote } = props
+  const {
+    defaultText,
+    defaultTitle,
+    handleAddNote,
+    handleEditNote,
+    onHide,
+    type
+  } = props
   // const newNote = { text: 'txt' }
   const [text, setText] = useState(defaultText)
   const [title, setTitle] = useState(defaultTitle)
@@ -30,9 +38,22 @@ function Form (props) {
           handleTextChange={handleTextChange}
         />
       </div>
-      <div className='d-flex w-100 justify-content-end'>
-        {isEditText && (
-          <AddButton handleAddNote={handleAddNote} text={text} title={title} />
+      <div className='d-flex w-100 justify-content-end mt-1'>
+        {type === 'new' ? (
+          isEditText && (
+            <AddButton
+              handleAddNote={handleAddNote}
+              text={text}
+              title={title}
+            />
+          )
+        ) : (
+          <SaveEditButton
+            handleEditNote={handleEditNote}
+            newText={text}
+            newTitle={title}
+            onHide={onHide}
+          />
         )}
       </div>
     </>

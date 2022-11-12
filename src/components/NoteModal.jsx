@@ -1,16 +1,18 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+import Form from './Form'
 
-function NoteModal ({ show, onHide, noteClicked }) {
+function NoteModal (props) {
+  const {
+    show,
+    onHide,
+    noteClicked,
+    handleAddNote,
+    formKey,
+    handleEditNote
+  } = props
   return (
-    <Modal
-      show={show}
-      onHide={onHide}
-      backdrop='static'
-      keyboard={false}
-      centered
-    >
+    <Modal show={show} onHide={onHide} backdrop='static' keyboard={false}>
       <Modal.Header closeButton>
         <Modal.Title>Edit Note</Modal.Title>
       </Modal.Header>
@@ -19,17 +21,16 @@ function NoteModal ({ show, onHide, noteClicked }) {
           Created at: {noteClicked.date.toDateString()},{' '}
           {noteClicked.date.toTimeString().split(' ')[0]}
         </h6>
-        <h1>{noteClicked.title}</h1>
-        <p>{noteClicked.text}</p>
+        <Form
+          key={formKey}
+          defaultText={noteClicked.text}
+          defaultTitle={noteClicked.title}
+          handleAddNote={handleAddNote}
+          handleEditNote={handleEditNote}
+          onHide={onHide}
+          type={'edit'}
+        />
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant='secondary' onClick={onHide}>
-          Close
-        </Button>
-        <Button variant='primary' disabled>
-          Save*
-        </Button>
-      </Modal.Footer>
     </Modal>
   )
 }

@@ -20,7 +20,7 @@ function Note (props) {
       <div
         style={{ zIndex: '1' }}
         className='border shadow rounded p-2'
-        onClick={() => handleShowModal(note)}
+        onClick={() => handleShowModal(note, index)}
       >
         <div className='row justify-content-between'>
           <h6 className=''>
