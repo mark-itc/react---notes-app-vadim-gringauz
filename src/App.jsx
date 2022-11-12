@@ -9,6 +9,7 @@ function App () {
   const [notes, setNotes] = useState([])
   const defaultText = ''
   const defaultTitle = ''
+  const defaultColor = 'light'
   const [formKey, setFormKey] = useState(0)
 
   const handleAddNote = (newNote) => {
@@ -37,7 +38,8 @@ function App () {
     date: new Date('1/1/2020'),
     lastEditDate: null,
     title: 'empty title',
-    text: 'empty text'
+    text: 'empty text',
+    color: 'light'
   })
   const [noteIndexToEdit, setNoteIndexToEdit] = useState()
 
@@ -60,6 +62,7 @@ function App () {
           key={formKey}
           defaultText={defaultText}
           defaultTitle={defaultTitle}
+          defaultColor={defaultColor}
           handleAddNote={handleAddNote}
           type={'new'}
         />
