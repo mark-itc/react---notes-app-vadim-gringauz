@@ -3,7 +3,7 @@ import React from 'react'
 function Header () {
   return (
     <header>
-      <h6 className='text-secondary text-right w-100'>VG / ITC / React / Milestone-5 v1.0</h6>
+      <h6 className='text-secondary text-right w-100'>VG / ITC / React / Milestone-5.1 v0.2</h6>
     </header>
   )
 }

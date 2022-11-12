@@ -20,20 +20,24 @@ function Form (props) {
     }, 200)
 
   return (
-    <div className='border shadow rounded p-1 w-100 sticky-top bg-white'>
-      <TitleInput title={title} handleTitleChange={handleTitleChange} />
-      <TextInput
-        text={text}
-        handleOnFocus={handleOnFocus}
-        handleOnBlur={handleOnBlur}
-        handleTextChange={handleTextChange}
-      />
-      <div className='position-absolute bottom-0 end-0 p-3'>
+    <>
+      <div className='border shadow rounded p-1 w-100 sticky-top bg-white'>
+        <TitleInput title={title} handleTitleChange={handleTitleChange} />
+        <TextInput
+          text={text}
+          handleOnFocus={handleOnFocus}
+          handleOnBlur={handleOnBlur}
+          handleTextChange={handleTextChange}
+        />
+      </div>
+      <div className='d-flex w-100 justify-content-end'>
         {isEditText && (
           <AddButton handleAddNote={handleAddNote} text={text} title={title} />
         )}
       </div>
-    </div>
+    </>
   )
 }
 export default Form
+// calssName if I want the button over the textarea:
+// className='position-absolute bottom-0 end-0 p-3'
