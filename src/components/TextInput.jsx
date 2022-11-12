@@ -5,14 +5,16 @@ function TextInput ({ text, handleOnFocus, handleOnBlur, handleTextChange }) {
   const [height, setHeight] = useState('22px')
 
   const autoResize = e => {
-    console.log('scrollHeight=', e.target.scrollHeight)
-    console.log('rows=', e.target.rows)
-    // setHeight(60)
-    console.log('height 60?=', height)
     setHeight('auto')
-    console.log('scrollHeight after reset=', e.target.scrollHeight)
     setHeight(e.target.scrollHeight - 16 + 'px')
-    console.log('height final=', height)
+  }
+
+  const handleKeyDown = (e) => {
+    // console.log(e)
+    // if (e.keyCode === 13) {
+    //   console.log('enter');
+    //   handleTextChange(e.target.value + '\n')
+    // } 
   }
 
   return (
@@ -31,7 +33,8 @@ function TextInput ({ text, handleOnFocus, handleOnBlur, handleTextChange }) {
           height: height,
           overflow: 'hidden'
         }}
-        onInput={e => autoResize(e)}
+        onInput={autoResize}
+        onKeyDown={handleKeyDown}
       />
     </>
   )
