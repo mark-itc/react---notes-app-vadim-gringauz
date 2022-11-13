@@ -4,7 +4,7 @@ function TitleInput ({ title, handleTitleChange }) {
   return (
     <input
       type='text'
-      className='border-0 w-100 form-control'
+      className='fs-3 border-0 w-100 form-control bg-transparent'
       placeholder='Title'
       onChange={e => handleTitleChange(e.target.value)}
       value={title}
