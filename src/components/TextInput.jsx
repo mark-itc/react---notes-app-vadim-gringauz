@@ -7,7 +7,6 @@ function TextInput ({ text, handleOnFocus, handleOnBlur, handleTextChange }) {
   const autoResize = e => {
     setHeight('auto')
     setHeight(e.target.scrollHeight - 16 + 'px')
-    console.log('rsize1');
   }
 
   const handleKeyDown = (e) => {

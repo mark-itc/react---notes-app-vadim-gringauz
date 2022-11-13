@@ -14,7 +14,7 @@ export default function AddButton (props) {
       {text && (
         <button
           type='button'
-          className='btn btn-secondary p-0 fs-3 fw-bolder rounded-circle'
+          className='AddButton btn btn-secondary fs-1 fw-bolder rounded-circle p-0'
           onClick={handleClick}
           style={{ width: '50px', height: '50px' }}
         >

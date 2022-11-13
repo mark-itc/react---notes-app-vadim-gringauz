@@ -32,20 +32,23 @@ function Form (props) {
 
   return (
     <>
-      <div className={`border shadow rounded p-1 w-100 sticky-top bg-${color}`}>
-        <TitleInput title={title} handleTitleChange={handleTitleChange} />
-        <TextInput
-          text={text}
-          handleOnFocus={handleOnFocus}
-          handleOnBlur={handleOnBlur}
-          handleTextChange={handleTextChange}
-        />
+      <div className='d-flex w-100 sticky-top'>
+        <ColorPicker setColor={setColor} />
+        <div className={`border shadow rounded p-1 w-100 bg-${color}`}>
+          <TitleInput title={title} handleTitleChange={handleTitleChange} />
+          <TextInput
+            text={text}
+            handleOnFocus={handleOnFocus}
+            handleOnBlur={handleOnBlur}
+            handleTextChange={handleTextChange}
+          />
+        </div>
+
       </div>
       <div
-        className='d-flex w-100 justify-content-between mt-1'
+        className='d-flex w-100 justify-content-end mt-1'
         style={{ height: '50px' }}
       >
-        <ColorPicker setColor={setColor} />
         {type === 'new' ? (
           isEditText && (
             <AddButton

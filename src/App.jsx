@@ -3,7 +3,9 @@ import NotesList from './components/NotesList'
 import NoteModal from './components/NoteModal'
 import Header from './components/Header'
 import Form from './components/Form'
+import localforage from "localforage"
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 function App () {
   const [notes, setNotes] = useState([])
@@ -52,6 +54,18 @@ function App () {
     setNoteClicked({ ...note })
     setNoteIndexToEdit(index)
   }
+
+  useEffect(() => {
+    localforage.setItem('notesApp.notes', notes)
+  }, [notes])
+
+  useEffect(() => {
+    const retrieveNotes = async () => {
+      const notesFromStorage = await localforage.getItem('notesApp.notes')
+      setNotes(notesFromStorage)
+    }
+    retrieveNotes()
+  }, [])
 
   return (
     <>
