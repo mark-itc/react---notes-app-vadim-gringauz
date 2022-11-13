@@ -12,7 +12,7 @@ export default function SaveEditButton (props) {
 
   return (
     <>
-      <Button variant='primary' onClick={handleClick}>
+      <Button variant='primary' onClick={handleClick} disabled={newText === ''}>
         Save & Close
       </Button>
     </>
