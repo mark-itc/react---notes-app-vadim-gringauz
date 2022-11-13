@@ -67,9 +67,11 @@ function App () {
     retrieveNotes()
   }, [])
 
+  const clearAll = () => setNotes([])
+
   return (
     <>
-      <Header />
+      <Header clearAll={clearAll} />
       <div className='container d-flex flex-column align-items-center p-3'>
         <h1>Notes App</h1>
         <Form
@@ -81,6 +83,7 @@ function App () {
           type={'new'}
         />
         <NotesList
+          key={'notes-list-' + notes.length}
           notes={notes}
           handleRemoveNote={handleRemoveNote}
           handleShowModal={handleShowModal}
