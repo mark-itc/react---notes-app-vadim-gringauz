@@ -1,6 +1,7 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Form from './Form'
+import FullDate from './FullDate'
 
 function NoteModal (props) {
   const {
@@ -18,11 +19,10 @@ function NoteModal (props) {
       </Modal.Header>
       <Modal.Body>
         <h6>
-          Created at: {noteClicked.date.toDateString()},{' '}
-          {noteClicked.date.toTimeString().split(' ')[0]}
+          Created at: <FullDate date={noteClicked.date} />
         </h6>
         <Form
-          key={formKey}
+          key={'edit' + formKey}
           defaultText={noteClicked.text}
           defaultTitle={noteClicked.title}
           handleAddNote={handleAddNote}

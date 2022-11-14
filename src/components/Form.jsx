@@ -31,8 +31,8 @@ function Form (props) {
     }, 200)
 
   return (
-    <>
-      <div className='d-flex w-100 sticky-top'>
+    <div className='w-100 sticky-top'>
+      <div className='d-flex w-100'>
         <ColorPicker setColor={setColor} />
         <div className={`border shadow rounded p-1 w-100 bg-${color}`}>
           <TitleInput title={title} handleTitleChange={handleTitleChange} />
@@ -43,14 +43,13 @@ function Form (props) {
             handleTextChange={handleTextChange}
           />
         </div>
-
       </div>
       <div
         className='d-flex w-100 justify-content-end mt-1'
         style={{ height: '50px' }}
       >
         {type === 'new' ? (
-          isEditText && (
+          text.replace(/(\r\n|\n|\r)/gm, '') != '' && (
             <AddButton
               handleAddNote={handleAddNote}
               text={text}
@@ -68,7 +67,7 @@ function Form (props) {
           />
         )}
       </div>
-    </>
+    </div>
   )
 }
 export default Form

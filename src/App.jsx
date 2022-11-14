@@ -75,7 +75,7 @@ function App () {
       <div className='container d-flex flex-column align-items-center p-3'>
         <h1>Notes App</h1>
         <Form
-          key={formKey}
+          key={'new' + formKey}
           defaultText={defaultText}
           defaultTitle={defaultTitle}
           defaultColor={defaultColor}

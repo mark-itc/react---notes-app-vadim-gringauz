@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import DeleteButton from './DeleteButton'
 import ConfirmDeleteModal from './ConfirmDeleteModal'
+import FullDate from './FullDate'
+import './Note.css'
 
 function Note (props) {
   const { note, index, handleRemoveNote, handleShowModal } = props
@@ -16,28 +18,26 @@ function Note (props) {
   }
 
   return (
-    <div className='position-relative'>
+    <div className='Note position-relative'>
       <div
-        style={{ zIndex: '1' }}
         className={`border shadow rounded p-2 bg-${color}`}
         onClick={() => handleShowModal(note, index)}
       >
-        <div className='row'>
-          <h3 style={{ overflowWrap: 'break-word' }}>{title}</h3>
+        <div className='title row'>
+          <h3>{title}</h3>
         </div>
-        <div className='row'>
-          <p style={{ overflowWrap: 'break-word', whiteSpace: 'pre-wrap' }}>
+        <div className='text row'>
+          <p>
             {text}
           </p>
         </div>
         <div className='row justify-content-between'>
           <h6>
-            created: {date.toDateString()}, {date.toTimeString().split(' ')[0]}
+            created: <FullDate date={date} />
           </h6>
           {lastEditDate && (
             <h6>
-              last edit: {lastEditDate.toDateString()},{' '}
-              {lastEditDate.toTimeString().split(' ')[0]}
+              last edit: <FullDate date={lastEditDate} />
             </h6>
           )}
         </div>
