@@ -1,6 +1,7 @@
 ## React.JS Project #1: :memo: Notes App
-# Milestone :five:.:one: v1.0 
-
+# Milestone :eight: v1.0 
+**Code Design**:  \
+![components](components.png) \
 **UI/UX Design**: It is responsive (I used Bootstrap), but my main focus was to deign it as a "mobile app" (people mostly use notes on their mobile device)
 ### *Progress:*
 - Milestone 1: Add :heavy_check_mark:
@@ -9,11 +10,12 @@
 - Milestone 4: Modal :heavy_check_mark:
 - Milestone 5: Input :heavy_check_mark:
 - Milestone 5.1: Auto-resize :heavy_check_mark:
-- Milestone 6: Edit
-- Milestone 7: Deployment
-- Milestone 8: Storage
-- Milestone 9: Archive
+- Milestone 6: Edit :heavy_check_mark:
+- Milestone 7: Deployment :heavy_check_mark:
+- Milestone 8: Storage :heavy_check_mark:
+- Milestone 9: Archive WIP
 - Milestone 10: Reminder
 
 
 ### :basketball: Vadim Gringauz :basketball:
+
