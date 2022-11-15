@@ -3,25 +3,25 @@ import NotesList from './components/NotesList'
 import NoteModal from './components/NoteModal'
 import Header from './components/Header'
 import Form from './components/Form'
-import localforage from "localforage"
+import localforage from 'localforage'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 
 function App () {
   const [notes, setNotes] = useState([])
+  const [removedNotes, setRemovedNotes] = useState([])
   const defaultText = ''
   const defaultTitle = ''
   const defaultColor = 'light'
   const [formKey, setFormKey] = useState(0)
 
-  const handleAddNote = (newNote) => {
+  const handleAddNote = newNote => {
     setFormKey(formKey + 1)
     newNote.date = new Date()
     // console.log('add note', newNote)
     setNotes([...notes, newNote])
   }
 
-  const handleEditNote = (newNote) => {
+  const handleEditNote = newNote => {
     newNote.date = notes[noteIndexToEdit].date
     newNote.lastEditDate = new Date()
     notes.splice(noteIndexToEdit, 1, newNote)
@@ -31,9 +31,16 @@ function App () {
   }
 
   const handleRemoveNote = index => {
-    notes.splice(index, 1)
+    const removedNote = notes.splice(index, 1)
     const newNotesWithoutDeleted = [...notes]
     setNotes(newNotesWithoutDeleted)
+    setRemovedNotes(...removedNotes, removedNote)
+  }
+  
+  const handleDeterminateNote = index => {
+    removedNotes.splice(index, 1)
+    const newRemovedNotes = [...removedNotes]
+    setRemovedNotes(newRemovedNotes)
   }
 
   const [noteClicked, setNoteClicked] = useState({
@@ -60,14 +67,23 @@ function App () {
   }, [notes])
 
   useEffect(() => {
+    localforage.setItem('notesApp.removedNotes', removedNotes)
+  }, [removedNotes])
+
+  useEffect(() => {
     const retrieveNotes = async () => {
       const notesFromStorage = await localforage.getItem('notesApp.notes')
+      const removedNotesFromStorage = await localforage.getItem('notesApp.removedNotes')
       setNotes(notesFromStorage)
+      setRemovedNotes(removedNotesFromStorage)
     }
     retrieveNotes()
   }, [])
 
-  const clearAll = () => setNotes([])
+  const clearAll = () => {
+    setNotes([])
+    setRemovedNotes([])
+  }
 
   return (
     <>
@@ -86,6 +102,13 @@ function App () {
           key={'notes-list-' + notes.length}
           notes={notes}
           handleRemoveNote={handleRemoveNote}
+          handleShowModal={handleShowModal}
+        />
+        <NotesList
+          key={'removed-notes-' + notes.length}
+          isListOfRemoved
+          notes={removedNotes}
+          handleRemoveNote={handleDeterminateNote}
           handleShowModal={handleShowModal}
         />
       </div>

@@ -6,7 +6,13 @@ import FullDate from './FullDate'
 import './Note.css'
 
 function Note (props) {
-  const { note, index, handleRemoveNote, handleShowModal } = props
+  const {
+    note,
+    index,
+    handleRemoveNote,
+    handleShowModal,
+    isRemovedNote
+  } = props
   const { date, text, title, lastEditDate, color } = note
 
   const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -19,6 +25,7 @@ function Note (props) {
 
   return (
     <div className='Note position-relative'>
+      {isRemovedNote && <div>Archieved!</div>}
       <div
         className={`border shadow rounded p-2 bg-${color}`}
         onClick={() => handleShowModal(note, index)}
@@ -27,9 +34,7 @@ function Note (props) {
           <h3>{title}</h3>
         </div>
         <div className='text row'>
-          <p>
-            {text}
-          </p>
+          <p>{text}</p>
         </div>
         <div className='row justify-content-between'>
           <h6>
