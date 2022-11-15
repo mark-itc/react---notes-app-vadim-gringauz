@@ -3,37 +3,46 @@ import NotesList from './components/NotesList'
 import NoteModal from './components/NoteModal'
 import Header from './components/Header'
 import Form from './components/Form'
-import localforage from "localforage"
+import localforage from 'localforage'
+import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+const NOTES_STORAGE_KEY = 'notesApp.notes'
+const REMOVED_NOTES_STORAGE_KEY = 'notesApp.removed'
 
 function App () {
   const [notes, setNotes] = useState([])
+  const [removedNotes, setRemovedNotes] = useState([])
   const defaultText = ''
   const defaultTitle = ''
   const defaultColor = 'light'
   const [formKey, setFormKey] = useState(0)
 
-  const handleAddNote = (newNote) => {
+  const handleAddNote = newNote => {
     setFormKey(formKey + 1)
     newNote.date = new Date()
-    // console.log('add note', newNote)
     setNotes([...notes, newNote])
   }
 
-  const handleEditNote = (newNote) => {
+  const handleEditNote = newNote => {
     newNote.date = notes[noteIndexToEdit].date
     newNote.lastEditDate = new Date()
-    notes.splice(noteIndexToEdit, 1, newNote)
-    // const modifiedNotes = [...notes]
-    // console.log('new notes:', modifiedNotes);
-    // setNotes(...notes)
+    const newNotes = [...notes]
+    newNotes.splice(noteIndexToEdit, 1, newNote)
+    setNotes(newNotes)
   }
 
   const handleRemoveNote = index => {
-    notes.splice(index, 1)
+    const removedNote = notes.splice(index, 1)
     const newNotesWithoutDeleted = [...notes]
     setNotes(newNotesWithoutDeleted)
+    setRemovedNotes(...removedNotes, removedNote)
+  }
+
+  const handleDeterminateNote = index => {
+    removedNotes.splice(index, 1)
+    const newRemovedNotes = [...removedNotes]
+    setRemovedNotes(newRemovedNotes)
   }
 
   const [noteClicked, setNoteClicked] = useState({
@@ -56,26 +65,43 @@ function App () {
   }
 
   useEffect(() => {
-    localforage.setItem('notesApp.notes', notes)
+    localforage.setItem(NOTES_STORAGE_KEY, notes)
+    console.log('saved notes', notes)
   }, [notes])
 
   useEffect(() => {
+    localforage.setItem(REMOVED_NOTES_STORAGE_KEY, removedNotes)
+    console.log('saved removed notes', removedNotes)
+  }, [removedNotes])
+
+  useEffect(() => {
     const retrieveNotes = async () => {
-      const notesFromStorage = await localforage.getItem('notesApp.notes')
-      setNotes(notesFromStorage)
+      const notesFromStorage = await localforage.getItem(NOTES_STORAGE_KEY)
+      console.log('notesFromStorage=', notesFromStorage);
+      if (notesFromStorage) setNotes(notesFromStorage)
+
+      const removedNotesFromStorage = await localforage.getItem(
+        REMOVED_NOTES_STORAGE_KEY
+      )
+      console.log('removedNotesFromStorage=', removedNotesFromStorage);
+      if (removedNotesFromStorage) setRemovedNotes(removedNotesFromStorage)
+      console.log('retrieveNotes');
     }
     retrieveNotes()
   }, [])
 
-  const clearAll = () => setNotes([])
+  const clearAll = () => {
+    setNotes([])
+    setRemovedNotes([])
+  }
 
   return (
     <>
       <Header clearAll={clearAll} />
-      <div className='container d-flex flex-column align-items-center p-3'>
-        <h1>Notes App</h1>
+      <div className='container responsive-width d-flex flex-column align-items-center p-3'>
+        <h1 className='p-2'>Notes++</h1>
         <Form
-          key={formKey}
+          key={'new' + formKey}
           defaultText={defaultText}
           defaultTitle={defaultTitle}
           defaultColor={defaultColor}
@@ -86,6 +112,13 @@ function App () {
           key={'notes-list-' + notes.length}
           notes={notes}
           handleRemoveNote={handleRemoveNote}
+          handleShowModal={handleShowModal}
+        />
+        <NotesList
+          key={'removed-notes-' + notes.length}
+          isListOfRemoved
+          notes={removedNotes}
+          handleRemoveNote={handleDeterminateNote}
           handleShowModal={handleShowModal}
         />
       </div>

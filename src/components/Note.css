@@ -1,0 +1,16 @@
+.Note {
+    transition: transform .2s;
+}
+
+.Note:hover {
+    transform: scale(1.1);
+}
+
+.title {
+    overflow-wrap: break-word;
+}
+
+.text {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
