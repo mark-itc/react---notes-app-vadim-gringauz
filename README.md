@@ -1,7 +1,7 @@
 ## React.JS Project #1: :memo: Notes App
 # Milestone :eight: v1.0 
 **Code Design**:  \
-![components](components-structure.png) \
+![components](components.png) \
 **UI/UX Design**: It is responsive (I used Bootstrap), but my main focus was to deign it as a "mobile app" (people mostly use notes on their mobile device)
 ### *Progress:*
 - Milestone 1: Add :heavy_check_mark:
