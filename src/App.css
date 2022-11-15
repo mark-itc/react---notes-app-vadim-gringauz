@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.form-max-width {
+    width: 100%;
+}
+
+@media screen and (min-width: 900px) {
+    .responsive-width {
+        width: 1200px;
+    }
+
+    .form-max-width {
+        width: 760px;
+    }
+
+}

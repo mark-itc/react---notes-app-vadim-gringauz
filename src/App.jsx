@@ -4,7 +4,11 @@ import NoteModal from './components/NoteModal'
 import Header from './components/Header'
 import Form from './components/Form'
 import localforage from 'localforage'
+import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+const NOTES_STORAGE_KEY = 'notesApp.notes'
+const REMOVED_NOTES_STORAGE_KEY = 'notesApp.removed'
 
 function App () {
   const [notes, setNotes] = useState([])
@@ -17,17 +21,15 @@ function App () {
   const handleAddNote = newNote => {
     setFormKey(formKey + 1)
     newNote.date = new Date()
-    // console.log('add note', newNote)
     setNotes([...notes, newNote])
   }
 
   const handleEditNote = newNote => {
     newNote.date = notes[noteIndexToEdit].date
     newNote.lastEditDate = new Date()
-    notes.splice(noteIndexToEdit, 1, newNote)
-    // const modifiedNotes = [...notes]
-    // console.log('new notes:', modifiedNotes);
-    // setNotes(...notes)
+    const newNotes = [...notes]
+    newNotes.splice(noteIndexToEdit, 1, newNote)
+    setNotes(newNotes)
   }
 
   const handleRemoveNote = index => {
@@ -36,7 +38,7 @@ function App () {
     setNotes(newNotesWithoutDeleted)
     setRemovedNotes(...removedNotes, removedNote)
   }
-  
+
   const handleDeterminateNote = index => {
     removedNotes.splice(index, 1)
     const newRemovedNotes = [...removedNotes]
@@ -63,19 +65,27 @@ function App () {
   }
 
   useEffect(() => {
-    localforage.setItem('notesApp.notes', notes)
+    localforage.setItem(NOTES_STORAGE_KEY, notes)
+    console.log('saved notes', notes)
   }, [notes])
 
   useEffect(() => {
-    localforage.setItem('notesApp.removedNotes', removedNotes)
+    localforage.setItem(REMOVED_NOTES_STORAGE_KEY, removedNotes)
+    console.log('saved removed notes', removedNotes)
   }, [removedNotes])
 
   useEffect(() => {
     const retrieveNotes = async () => {
-      const notesFromStorage = await localforage.getItem('notesApp.notes')
-      const removedNotesFromStorage = await localforage.getItem('notesApp.removedNotes')
-      setNotes(notesFromStorage)
-      setRemovedNotes(removedNotesFromStorage)
+      const notesFromStorage = await localforage.getItem(NOTES_STORAGE_KEY)
+      console.log('notesFromStorage=', notesFromStorage);
+      if (notesFromStorage) setNotes(notesFromStorage)
+
+      const removedNotesFromStorage = await localforage.getItem(
+        REMOVED_NOTES_STORAGE_KEY
+      )
+      console.log('removedNotesFromStorage=', removedNotesFromStorage);
+      if (removedNotesFromStorage) setRemovedNotes(removedNotesFromStorage)
+      console.log('retrieveNotes');
     }
     retrieveNotes()
   }, [])
@@ -88,8 +98,8 @@ function App () {
   return (
     <>
       <Header clearAll={clearAll} />
-      <div className='container d-flex flex-column align-items-center p-3'>
-        <h1>Notes App</h1>
+      <div className='container responsive-width d-flex flex-column align-items-center p-3'>
+        <h1 className='p-2'>Notes++</h1>
         <Form
           key={'new' + formKey}
           defaultText={defaultText}

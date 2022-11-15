@@ -1,7 +1,7 @@
 import React from 'react'
 import Note from './Note'
 
-export default function NotesList ({
+function NotesList ({
   notes,
   handleRemoveNote,
   handleShowModal,
@@ -19,7 +19,7 @@ export default function NotesList ({
                 {isListOfRemoved ? (
                   <Note
                     isRemovedNote
-                    key={'note-' + index}
+                    key={'removed-note-' + index}
                     note={note}
                     handleRemoveNote={handleRemoveNote}
                     index={index}
@@ -42,3 +42,4 @@ export default function NotesList ({
     </>
   )
 }
+export default NotesList
