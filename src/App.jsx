@@ -39,12 +39,6 @@ function App () {
     setRemovedNotes(...removedNotes, removedNote)
   }
 
-  const handleDeterminateNote = index => {
-    removedNotes.splice(index, 1)
-    const newRemovedNotes = [...removedNotes]
-    setRemovedNotes(newRemovedNotes)
-  }
-
   const [noteClicked, setNoteClicked] = useState({
     date: new Date('1/1/2020'),
     lastEditDate: null,
@@ -66,26 +60,21 @@ function App () {
 
   useEffect(() => {
     localforage.setItem(NOTES_STORAGE_KEY, notes)
-    console.log('saved notes', notes)
   }, [notes])
 
   useEffect(() => {
     localforage.setItem(REMOVED_NOTES_STORAGE_KEY, removedNotes)
-    console.log('saved removed notes', removedNotes)
   }, [removedNotes])
 
   useEffect(() => {
     const retrieveNotes = async () => {
       const notesFromStorage = await localforage.getItem(NOTES_STORAGE_KEY)
-      console.log('notesFromStorage=', notesFromStorage);
       if (notesFromStorage) setNotes(notesFromStorage)
 
       const removedNotesFromStorage = await localforage.getItem(
         REMOVED_NOTES_STORAGE_KEY
       )
-      console.log('removedNotesFromStorage=', removedNotesFromStorage);
       if (removedNotesFromStorage) setRemovedNotes(removedNotesFromStorage)
-      console.log('retrieveNotes');
     }
     retrieveNotes()
   }, [])
@@ -112,13 +101,6 @@ function App () {
           key={'notes-list-' + notes.length}
           notes={notes}
           handleRemoveNote={handleRemoveNote}
-          handleShowModal={handleShowModal}
-        />
-        <NotesList
-          key={'removed-notes-' + notes.length}
-          isListOfRemoved
-          notes={removedNotes}
-          handleRemoveNote={handleDeterminateNote}
           handleShowModal={handleShowModal}
         />
       </div>
